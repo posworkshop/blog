@@ -1,0 +1,13 @@
+baseURL = "https://www.posworkshop.space/"
+languageCode = "en-us"
+title = "Po's Workshop"
+theme = "m10c"
+paginate = 10
+
+[params]
+  author = "Po Tong"
+  description = "Under Construction"
+  avatar = "/img/posworkshop-avatar-gopher.png"
+  [[params.social]]
+    name = "github"
+	url = "https://github.com/posworkshop"
