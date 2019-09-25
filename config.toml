@@ -11,3 +11,7 @@ paginate = 10
   [[params.social]]
     name = "github"
 	url = "https://github.com/posworkshop"
+  [params.subscribe]
+    enabled = true
+    endpoint = "https://pos-workshop.appspot.com/blog-subscribe"
+    
