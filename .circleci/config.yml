@@ -3,13 +3,10 @@ jobs:
 
   dev_test:
     docker:
-      - image: felicianotech/docker-hugo:0.58
+      - image: posworkshop84/golang-hugo-ci:v1
     working_directory: ~/project
     steps:
       - checkout
-      - run:
-          name: "Download htmltest"
-          command: curl https://htmltest.wjdp.uk | bash
       - run:
           name: "Build site"
           command: make build_local
