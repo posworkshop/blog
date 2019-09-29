@@ -17,34 +17,58 @@ jobs:
           name: "Link check"
           command: make html_linkcheck
           
-  # build:
-  #   docker:
-  #     - image: felicianotech/docker-hugo:0.58
-  #   working_directory: ~/project
-  #   steps:
-  #     - checkout
-  #     # - run:
-  #     #     name: "step 1"
-  #     #     command: 
+  build:
+    docker:
+      - image: posworkshop84/golang-hugo-ci:v1
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: "Pull in submodule"
+          command: git submodule update --init --recursive
+      - run:
+          name: "Build site"
+          command: echo "building"
 
-  # deploy:
-  #   docker:
-  #     - image: felicianotech/docker-hugo:0.58
-  #   working_directory: ~/project
-
-  # post_deploy_check:
-  #   docker:
-  #     - image: felicianotech/docker-hugo:0.58
-  #   working_directory: ~/project
+  deploy:
+    docker:
+      - image: posworkshop84/golang-hugo-ci:v1
+    working_directory: ~/project
+    steps:
+      - run:
+          name: "Deploy site"
+          command: echo "deploying"
+      
+  post_deploy_check:
+    docker:
+      - image: posworkshop84/golang-hugo-ci:v1
+    working_directory: ~/project
+    steps:
+      - run:
+          name: "Link check for deployed site"
+          command: echo "testing"
 
 
 workflows:
   version: 2
   git_push:
     jobs:
+      - dev_test:
+          filters:
+            branches:
+              ignore: master
+  merge_into_master:
+    job:
       - dev_test
-  # merge_into_master:
-  #   job:
-  #     - build
-  #     - deploy
-  #     - post_deploy_check
+      - build:
+          requires:
+            - dev_test
+      - deploy:
+          requires:
+            - build
+      - post_deploy_check:
+          requires:
+            - deploy
+          filters:
+            branches:
+              only: master
