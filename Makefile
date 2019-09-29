@@ -2,10 +2,13 @@ dev_server:
 	hugo server -t m10c -D
 
 build:
-	hugo -t m10c
+	hugo -b "https://www.posworkshop.space/" -t m10c
+
+build_local:
+	hugo -t m10c -D -F
 
 deploy:
 	scripts/deploy.sh
 
-htmlproofing:
-	muffet http://localhost:1313
+html_linkcheck:
+	htmltest -l 0

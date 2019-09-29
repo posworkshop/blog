@@ -1,7 +1,11 @@
 # blog
 
-# uses muffet for html proofing
+## HTML Link Checking
 
-to install
+uses [htmltest](https://github.com/wjdp/htmltest)
 
-`go get -u github.com/raviqqe/muffet`
+need to install this before running `make html_linkcheck`
+
+## Notes about Org -> posts
+
+under construction

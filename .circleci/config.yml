@@ -1,0 +1,50 @@
+version: 2
+jobs:
+
+  dev_test:
+    docker:
+      - image: felicianotech/docker-hugo:0.58
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: "Download htmltest"
+          command: curl https://htmltest.wjdp.uk | bash
+      - run:
+          name: "Build site"
+          command: make build_local
+      - run:
+          name: "Link check"
+          command: make html_linkcheck
+          
+  build:
+    docker:
+      - image: felicianotech/docker-hugo:0.58
+    working_directory: ~/project
+    steps:
+      - checkout
+      # - run:
+      #     name: "step 1"
+      #     command: 
+
+  deploy:
+    docker:
+      - image: felicianotech/docker-hugo:0.58
+    working_directory: ~/project
+
+  post_deploy_check:
+    docker:
+      - image: felicianotech/docker-hugo:0.58
+    working_directory: ~/project
+
+
+workflows:
+  version: 2
+  git_push:
+    job:
+      - dev_test
+  # merge_into_master:
+  #   job:
+  #     - build
+  #     - deploy
+  #     - post_deploy_check
