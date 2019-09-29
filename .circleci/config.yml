@@ -51,21 +51,21 @@ jobs:
 
 workflows:
   version: 2
-  git_push:
-    jobs:
-      - dev_test:
-          filters:
-            branches:
-              ignore: master
-  merge_into_master:
+  dev_and_prod:
     jobs:
       - dev_test
       - build:
           requires:
             - dev_test
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only: master
       - post_deploy_check:
           requires:
             - deploy
