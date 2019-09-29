@@ -41,7 +41,7 @@ jobs:
 workflows:
   version: 2
   git_push:
-    job:
+    jobs:
       - dev_test
   # merge_into_master:
   #   job:
