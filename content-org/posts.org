@@ -1,0 +1,57 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_CODE_FENCE: nil
+#+HUGO_WEIGHT: auto
+
+#+author: Po Tong
+
+* Godot :@godot:
+
+All posts in here will have the category set to /godot/.
+  
+** DONE 2D Physics Bodies :phyics:
+   CLOSED: [2019-09-04 Wed 17:06]
+:PROPERTIES:
+:EXPORT_FILE_NAME: godot-2d-physics-bodies
+:END:
+This post is about 2D physics bodies in godot.
+*** List of bodies
+
+- KinematicBody2D
+- RigidBody2D
+- StaticBody2D
+
+**** KinematicBody2D
+
+#+begin_src gdscript
+extends KinematicBody2D
+
+func _physics_process(delta):
+    pass
+#+end_src
+
+- No physics
+
+**** RigidBody2D
+
+#+begin_src gdscript
+extends RigidBody2D
+
+func _physics_process(delta):
+    pass
+#+end_src
+
+- Yes physics
+
+**** StaticBody2D
+
+- Can't move, like a rock
+
+*** Apply to Top Down Game
+
+- Code examples
+
+** TODO Signals
+:PROPERTIES:
+:EXPORT_FILE_NAME: godot-signals
+:END:
+This post is about signals.
