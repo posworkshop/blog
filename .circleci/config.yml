@@ -58,7 +58,7 @@ workflows:
             branches:
               ignore: master
   merge_into_master:
-    job:
+    jobs:
       - dev_test
       - build:
           requires:
