@@ -85,7 +85,7 @@ workflows:
       - dev_test
       - build_and_deploy:
           requires:
-            -dev_test
+            - dev_test
           filters:
             branches:
               only: master
