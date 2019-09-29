@@ -17,25 +17,25 @@ jobs:
           name: "Link check"
           command: make html_linkcheck
           
-  build:
-    docker:
-      - image: felicianotech/docker-hugo:0.58
-    working_directory: ~/project
-    steps:
-      - checkout
-      # - run:
-      #     name: "step 1"
-      #     command: 
+  # build:
+  #   docker:
+  #     - image: felicianotech/docker-hugo:0.58
+  #   working_directory: ~/project
+  #   steps:
+  #     - checkout
+  #     # - run:
+  #     #     name: "step 1"
+  #     #     command: 
 
-  deploy:
-    docker:
-      - image: felicianotech/docker-hugo:0.58
-    working_directory: ~/project
+  # deploy:
+  #   docker:
+  #     - image: felicianotech/docker-hugo:0.58
+  #   working_directory: ~/project
 
-  post_deploy_check:
-    docker:
-      - image: felicianotech/docker-hugo:0.58
-    working_directory: ~/project
+  # post_deploy_check:
+  #   docker:
+  #     - image: felicianotech/docker-hugo:0.58
+  #   working_directory: ~/project
 
 
 workflows:
