@@ -1,0 +1,74 @@
+version: 2
+jobs:
+
+  dev_test:
+    docker:
+      - image: posworkshop84/golang-hugo-ci:v1
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: "Pull in submodule"
+          command: git submodule update --init --recursive
+      - run:
+          name: "Build site"
+          command: make build_local
+      - run:
+          name: "Link check"
+          command: make html_linkcheck
+          
+  build:
+    docker:
+      - image: posworkshop84/golang-hugo-ci:v1
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: "Pull in submodule"
+          command: git submodule update --init --recursive
+      - run:
+          name: "Build site"
+          command: echo "building"
+
+  deploy:
+    docker:
+      - image: posworkshop84/golang-hugo-ci:v1
+    working_directory: ~/project
+    steps:
+      - run:
+          name: "Deploy site"
+          command: echo "deploying"
+      
+  post_deploy_check:
+    docker:
+      - image: posworkshop84/golang-hugo-ci:v1
+    working_directory: ~/project
+    steps:
+      - run:
+          name: "Link check for deployed site"
+          command: echo "testing"
+
+
+workflows:
+  version: 2
+  dev_and_prod:
+    jobs:
+      - dev_test
+      - build:
+          requires:
+            - dev_test
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - post_deploy_check:
+          requires:
+            - deploy
+          filters:
+            branches:
+              only: master
