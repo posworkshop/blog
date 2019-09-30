@@ -1,0 +1,16 @@
+#+HUGO_BASE_DIR: ../
+#+HUGO_CODE_FENCE: nil
+#+HUGO_WEIGHT: auto
+
+#+author: Po Tong
+
+* Godot :@godot:
+
+All posts in here will have the category set to /godot/.
+
+** TODO Deploy your game to GitHub
+:PROPERTIES:
+:EXPORT_FILE_NAME: godot-deploy-web-export-to-github
+:END:
+
+This is post is about how to deploy a Godot game to GitHub
