@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  link_check:
+  build:
     branches:
       ignore:
         - master
@@ -18,3 +18,4 @@ jobs:
       - run:
           name: "Link check"
           command: make html_linkcheck
+          
