@@ -1,7 +1,9 @@
 version: 2
 jobs:
-
-  dev_test:
+  link_check:
+    branches:
+      ignore:
+        - master
     docker:
       - image: posworkshop84/golang-hugo-ci:v1
     working_directory: ~/project
@@ -16,94 +18,3 @@ jobs:
       - run:
           name: "Link check"
           command: make html_linkcheck
-          
-  build_and_deploy:
-    docker:
-      - image: posworkshop84/golang-hugo-ci:v1
-    working_directory: ~/project
-    steps:
-      - checkout
-      - run:
-          name: "Pull in submodule"
-          command: git submodule update --init --recursive
-      - run:
-          name: "Remove public folder; Starting fresh"
-          command: rm -rf public
-      - run:
-          name: "Build site"
-          command: make deploy
-    
-  build:
-    docker:
-      - image: posworkshop84/golang-hugo-ci:v1
-    working_directory: ~/project
-    steps:
-      - checkout
-      - run:
-          name: "Pull in submodule"
-          command: git submodule update --init --recursive
-      - run:
-          name: "Remove public folder; Starting fresh"
-          command: rm -rf public
-      - run:
-          name: "Build site"
-          command: make build
-      # - persist_to_workspace:
-      #     root: ./
-      #     paths:
-      #       - public
-
-  deploy:
-    docker:
-      - image: posworkshop84/golang-hugo-ci:v1
-    working_directory: ~/project
-    steps:
-      - checkout
-      - run:
-          name: "Pull in submodule"
-          command: git submodule update --init --recursive
-      - attach_workspace:
-          at: ./
-      - run:
-          name: "Deploy site"
-          command: echo "deploying"
-      
-  post_deploy_check:
-    docker:
-      - image: posworkshop84/golang-hugo-ci:v1
-    working_directory: ~/project
-    steps:
-      - run:
-          name: "Link check for deployed site"
-          command: echo "testing"
-
-
-workflows:
-  version: 2
-  dev_and_prod:
-    jobs:
-      - dev_test
-      # - build_and_deploy:
-      #     requires:
-      #       - dev_test
-      #     filters:
-      #       branches:
-      #         only: master
-      - build:
-          requires:
-            - dev_test
-          filters:
-            branches:
-              only: master
-      # - deploy:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: master
-      - post_deploy_check:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
