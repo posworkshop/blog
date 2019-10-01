@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://posworkshop.space/"
 languageCode = "en-us"
 title = "Po's Workshop"
 theme = "m10c"
