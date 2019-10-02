@@ -60,7 +60,7 @@ remote branch on github
 
 export to HTML5, destination PROJECT\_ROOT/docs
 
-{{< figure src="/ox-hugo/export_ui.png" >}}
+{{< figure src="/ox-hugo/export_ui.png" alt="Export UI, missing export template" width="800" >}}
 
 comment abou altering index.html
 

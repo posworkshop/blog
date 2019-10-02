@@ -59,6 +59,8 @@
 
 	  export to HTML5, destination PROJECT_ROOT/docs
 
+	  #+attr_html: :alt Export UI, missing export template
+	  #+attr_html: :width 800
 	  [[file:export_ui.png]]
 
 	  comment abou altering index.html
