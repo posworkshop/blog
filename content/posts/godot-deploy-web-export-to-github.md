@@ -6,95 +6,131 @@ draft = true
 weight = 2001
 +++
 
-## Foreword {#foreword}
+<a href="https://ldjam.com/" target="_blank">Ludum Dare 45</a> is happening soon! I remember when I participated in LD42, I had a friend helping me test my game and give me feedback during the jam. For each iteration of the game, I had to export and upload it to Dropbox for him to download. The whole thing felt tedious, and it seemed like it was taking a big chunk of my 48 hours away.
 
-This is post is about how to deploy a Godot game to GitHub
+I decided to participate on a whim so I wasn't really all that prepared for the "DevOp" side of things. Even the decision of using Godot was made days before the jam started.
 
-GIF of my demo game
+For LD45 I've decided to employ a different workflow for play-testing the game and for people to judge it after the jam is over, and I'd like to share it with anyone who is interested.
 
-link to my demo page/game
-
-
-### LD 45 is happening soon {#ld-45-is-happening-soon}
+I'm going to use Godot's export to HTML5 feature to make a web format of my game and host it on my GitHub account. If you are interested in doing something similar, read on!
 
 
-### Web version is easy for people to play {#web-version-is-easy-for-people-to-play}
+## Reasons for this workflow {#reasons-for-this-workflow}
 
-no download
+-   No download means more players (IMO)
 
-no OS restriction, as long as browser is good
+    Anyone with a compatible browser can play the game. People will be more inclined to try your game if they don't have to download a executable and run it on their computer.
 
+-   Fast feedback time during development
 
-### VC good {#vc-good}
+    The game will be updated almost automatically every time you commit your code.
 
-source control is good
+-   Free CDN
 
-have a github account means you have a CDN
-
-
-## Actual content {#actual-content}
+    If you have a GitHub account you have a CDN at your disposal. Why not utilize it.
 
 
-### summary of what we are doing {#summary-of-what-we-are-doing}
+## What will you be doing?? {#what-will-you-be-doing}
 
-deploy a game made with Godot engine to github using the github page setup
+-   Export your finished game from Godot in HTML5 format
+-   Push the game to GitHub
+-   Configure GitHub page to serve the game
 
+<a href="https://posworkshop.github.io/get-the-dot-demo/" target="_blank">Here</a> is a demo game I've made to show what the end result of this workflow looks like.
 
-### Requirements {#requirements}
+And here is a GIF of the game a action.
 
-have a github account
-
-have a game on godot engine
-
-
-### Setup {#setup}
-
-game is ready to go
-
-local repo
-
-remote branch on github
+{{< figure src="/ox-hugo/get_the_dot_demo.gif" alt="GIF of my demo" width="600" >}}
 
 
-### Step 1: export the game {#step-1-export-the-game}
+## Requirements {#requirements}
 
-export to HTML5, destination PROJECT\_ROOT/docs
-
-{{< figure src="/ox-hugo/export_ui.png" alt="Export UI, missing export template" width="800" >}}
-
-comment abou altering index.html
-
-might need to download export template, it is available on Godot's download page
-
-use Firefox to test locally
-
-use a local server if you have problem loading the game
-
-Chrome might need to have its webassembly flag turned on
+-   Basic working knowledge of Git
+-   A game made with Godot ready to be exported
+-   Game code is tracked in a local Git repository (repo)
+-   A GitHub account
 
 
-### Step 2: git and github things {#step-2-git-and-github-things}
+## Exporting your game {#exporting-your-game}
 
-push to github
+Once the game is "done", you can export it from Godot by going to Project -> Export in the menu.
 
-setup github page to serve from master branch and docs folder
+You should see this dialog after clicking Export.
 
-Repo->settings->github page->serving files from
+{{< figure src="/ox-hugo/export_ui.png" alt="Export UI, missing export template" width="600" >}}
+
+If you haven't export in HTML5 format before you will need to click Add... and choose HTML5 in the drop-down.
+
+Your dialog says "Export templates for this platform are missing" at the bottom, you will need to download them by clicking on Manage Export Templates. The Editor will then take you through the steps to download the templates.
+
+Once everything is ready to go, click Export Project.
+
+You will also want to set Path to PROJECT\_ROOT/docs. The reason for doing this will become apparent later.
+
+Finally, click save and you are done. I didn't have to change any settings for my very simple sample game. If you run into problem exporting, consult [Godot docs site](https://docs.godotengine.org/en/3.1/getting%5Fstarted/workflow/export/exporting%5Ffor%5Fweb.html) for more information on project exporting.
+
+To make sure your game is exported properly and actually runs, you can open the export html page with your browser. I was able to just open the file with Firefox with no problem. But as mentioned on the docs site, you might need to start a HTTP server to serve the page for the game to run properly. If you use Chrome, you may also need to turn its WebAssembly feature on. You can google the instructions on how to accomplish this.
 
 
-### PROFIT! {#profit}
+## Pushing to GitHub {#pushing-to-github}
 
-go to the page URL, you should see the game
+(You can skip this step if you already have your code in GitHub)
 
-another benefit, when you make changes to the game, merge it to master then push will auto matically update the game, good for other people to test
+You will need to create a new repo on GitHub to host your code. This will be the remote repo for your local repo.
+
+Here is what the new repo UI looks like.
+
+{{< figure src="/ox-hugo/github_create_repo.png" alt="GitHub create repo UI" width="600" >}}
+
+If you already gave your game a name, you will probably want to name the repo something similar if not the same. The repo name will be part of the URL where people can access your game.
+
+You should set the repo to public for its GitHub page to be accessible. I believe you would need a paid account if you want to use GitHub page with private repos.
+
+You are going to push your existing local repo to this new remote repo, so your can ignore the part about README and .gitignore like it says on the page.
+
+GitHub should take you to this page after the repo is created.
+
+{{< figure src="/ox-hugo/github_new_repo.png" alt="GitHub new repo UI" width="600" >}}
+
+Following the instruction in "…or push an existing repository from the command line", run
+
+{{< highlight sh >}}
+$ git remote add origin https://github.com/<username>/<repo_name>.git
+$ git push -u origin master
+{{< /highlight >}}
+
+from your local repo directory to push it to your GitHub remote repo. Make sure you are on the master branch in your local repo when running this command.
 
 
-### additional stuff {#additional-stuff}
+## Configuring GitHub page {#configuring-github-page}
 
-not just limit to godot, any engine that let's you export to web format should work
+Now that your code is on GitHub, it's time to spin up a GitHub page.
 
-bitbucket also has a "page" setup i believe is similar to github page
+Go to your repo's settings section from its homepage.
 
-using sub module
+{{< figure src="/ox-hugo/github_repo_home.png" alt="GitHub repo UI" width="600" >}}
 
-automation and diff branch
+Scroll down to the GitHub Pages section.
+
+You should see something like this.
+
+{{< figure src="/ox-hugo/github_page_none.png" alt="GitHub repo UI" width="600" >}}
+
+You want to change the Source drop-down to "master branch /docs folder". And this is why I asked you to export your game to the docs folder earlier. You could just have your web game files in your PROJECT\_ROOT directory and change the Source drop-down to "master branch", but I prefer the docs method because it makes your project more organized in my opinion.
+
+And that's it, you are done! Your game should now be accessible from the URL indicated in the GitHub Pages section.
+
+Now when you make changes to your game and makes a new build, just push your updated master branch to GitHub and it will serve the new version of your game.
+
+
+## Extra thoughts {#extra-thoughts}
+
+Although this post is written specifically for hosting Godot game on GitHub, the same workflow should work for any engine that exports to web format and any source control site that has something similar to GitHub pages.
+
+For instance, I believe Unity has a option to export with WebGL and Bitbucket Cloud seems to be Bitbucket's version of GitHub pages.
+
+Also, there are many ways to refine the workflow described in this post in case you want to push your game beyond the game jam sphere.
+
+Things like, using git submodule to keep your game code and exported files in their own repos so you don't have to use the docs folder of the code repo. Or incorporating automated testing since GitHub works really well with some of the continuous integration(CI) services out there. GitHub is even starting to implement its own CI workflow so you don't have to use other tools/services. Check out [GitHub Actions](https://github.com/features/actions) if you are curious.
+
+That's it for this post. If you want to be notified of new posts or updates to existing posts, go ahead and subscribe. Thanks for reading :)
