@@ -1,8 +1,9 @@
 +++
 title = "Deploy your game to GitHub"
 author = ["Po Tong"]
+date = 2019-10-02T23:25:00-07:00
 categories = ["godot"]
-draft = true
+draft = false
 weight = 2001
 +++
 
