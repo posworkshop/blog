@@ -18,20 +18,23 @@ I'm going to use Godot's export to HTML5 feature to make a web format of my game
 
 ## Reasons for this workflow {#reasons-for-this-workflow}
 
--   No download means more players (IMO)
 
-    Anyone with a compatible browser can play the game. People will be more inclined to try your game if they don't have to download a executable and run it on their computer.
+#### No download means more players (IMO) {#no-download-means-more-players--imo}
 
--   Fast feedback time during development
-
-    The game will be updated almost automatically every time you commit your code.
-
--   Free CDN
-
-    If you have a GitHub account you have a CDN at your disposal. Why not utilize it.
+Anyone with a compatible browser can play the game. People will be more inclined to try your game if they don't have to download a executable and run it on their computer.
 
 
-## What will you be doing?? {#what-will-you-be-doing}
+#### Fast feedback time during development {#fast-feedback-time-during-development}
+
+The game will be updated almost automatically every time you commit your code.
+
+
+#### Free CDN {#free-cdn}
+
+If you have a GitHub account you have a CDN at your disposal. Why not utilize it.
+
+
+## What will you be doing {#what-will-you-be-doing}
 
 -   Export your finished game from Godot in HTML5 format
 -   Push the game to GitHub
@@ -134,4 +137,4 @@ Also, there are many ways to refine the workflow described in this post in case 
 
 Things like, using git submodule to keep your game code and exported files in their own repos so you don't have to use the docs folder of the code repo. Or incorporating automated testing since GitHub works really well with some of the continuous integration(CI) services out there. GitHub is even starting to implement its own CI workflow so you don't have to use other tools/services. Check out [GitHub Actions](https://github.com/features/actions) if you are curious.
 
-That's it for this post. If you want to be notified of new posts or updates to existing posts, go ahead and subscribe. Thanks for reading :)
+That's it for this post. If you want to be notified of new posts or updates to existing posts, go ahead and subscribe. Thanks for reading 🙂
