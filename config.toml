@@ -6,11 +6,14 @@ paginate = 10
 
 [params]
   author = "Po Tong"
-  description = "Under Construction"
+  description = " "
   avatar = "/img/posworkshop-avatar-gopher.png"
   [[params.social]]
     name = "github"
 	url = "https://github.com/posworkshop"
+  [[params.social]]
+    name = "mail"
+	url = "mailto:blog@posworkshop.space"
   [params.subscribe]
     enabled = true
     endpoint = "https://pos-workshop.appspot.com/blog-subscribe"
