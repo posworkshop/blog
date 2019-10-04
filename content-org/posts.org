@@ -131,7 +131,7 @@ I'm going to use Godot's /*export to HTML5*/ feature to make a web format of my 
 	  #+attr_html: :width 600
 	  [[file:github_page_none.png]]
 
-	  You want to change the Source dropdown to /*master branch /docs folder*/. This is why I asked you to export your game to the docs folder earlier. You could just have your web game files in your PROJECT_ROOT directory and change the Source drop-down to "master branch", but I prefer the docs method because it makes your project more organized.
+	  You want to change the Source dropdown to /*master branch /docs folder*/. This is why I asked you to export your game to the docs folder earlier. You could just have your web game files in your PROJECT_ROOT directory and change the Source dropdown to /*master branch*/, but I prefer the docs method because it makes your project more organized.
 
 	  And that's it, you are done! Your game should now be accessible from the URL indicated in the GitHub Pages section.
 

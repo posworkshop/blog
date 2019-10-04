@@ -120,7 +120,7 @@ You should see something like this.
 
 {{< figure src="/ox-hugo/github_page_none.png" alt="GitHub repo UI" width="600" >}}
 
-You want to change the Source dropdown to _**master branch /docs folder**_. This is why I asked you to export your game to the docs folder earlier. You could just have your web game files in your PROJECT\_ROOT directory and change the Source drop-down to "master branch", but I prefer the docs method because it makes your project more organized.
+You want to change the Source dropdown to _**master branch /docs folder**_. This is why I asked you to export your game to the docs folder earlier. You could just have your web game files in your PROJECT\_ROOT directory and change the Source dropdown to _**master branch**_, but I prefer the docs method because it makes your project more organized.
 
 And that's it, you are done! Your game should now be accessible from the URL indicated in the GitHub Pages section.
 
